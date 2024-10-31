@@ -10,6 +10,7 @@ This project focuses on implementing a face detection system utilizing the Viola
 - **Department**: SGCS
 - **Major**: Integrated System Engineering (ISE)
 - **Course**: Digital Image Processing Design `[202402-ISE4131-001]`
+- **Professor**: Kakani Vijay
 
 ### 💡 Project Details
 - **Project Title**: Face Detection using Viola-Jones (VJ) Algorithm
