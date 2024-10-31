@@ -1,12 +1,16 @@
+import time
+
 import cv2
 
-face_cascade = cv2.CascadeClassifier(
-    "E:/dowloads from chrome/inha/5s/DIP/Dataset/ISE4131-001-KBM/datasets/classifier/cascade.xml"
-)
+face_cascade = cv2.CascadeClassifier("cascade.xml")
 
 max_detected_width = 0
 max_detected_height = 0
 min_detectable_size = (30, 30)
+
+total_detection_time = 0
+total_images = 0
+total_faces_detected = 0
 
 cap = cv2.VideoCapture(0)
 
@@ -19,9 +23,19 @@ while True:
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
+    start_time = time.time()
+
     faces = face_cascade.detectMultiScale(
         gray, scaleFactor=1.2, minNeighbors=8, minSize=min_detectable_size
     )
+
+    detection_time = time.time() - start_time
+
+    total_detection_time += detection_time
+    total_images += 1
+    total_faces_detected += len(faces)
+
+    detection_time_per_face = detection_time / len(faces) if len(faces) > 0 else 0
 
     for x, y, w, h in faces:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
@@ -58,12 +72,39 @@ while True:
         (0, 255, 0),
         2,
     )
+    cv2.putText(
+        frame,
+        f"Detection Time per Image: {detection_time:.4f} sec",
+        (10, 90),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.6,
+        (0, 255, 0),
+        2,
+    )
+    cv2.putText(
+        frame,
+        f"Detection Time per Face: {detection_time_per_face:.4f} sec",
+        (10, 120),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.6,
+        (0, 255, 0),
+        2,
+    )
 
     cv2.imshow("Face Detection - Min/Max Size Analysis", frame)
 
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
+if total_images > 0:
+    average_detection_time_per_image = total_detection_time / total_images
+    print(
+        f"Average Detection Time per Image: {average_detection_time_per_image:.4f} sec"
+    )
+
+if total_faces_detected > 0:
+    average_detection_time_per_face = total_detection_time / total_faces_detected
+    print(f"Average Detection Time per Face: {average_detection_time_per_face:.4f} sec")
 
 cap.release()
 cv2.destroyAllWindows()

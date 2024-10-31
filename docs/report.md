@@ -35,6 +35,8 @@ This project aims to implement and evaluate a real-time face detection system us
 
 ### 4.1 Training
 - **Cascade Classifier**: The face detection model is trained using a combination of public datasets and a self-made dataset that includes images of team members under various orientations, scales, and lighting conditions.
+- **Data and Resources**:
+  - [Training Data Link](https://drive.google.com/drive/folders/1eKAg2KUzV6aSoDvpSEWK06y1WKEOHQiC?usp=sharing) - Contains datasets used for training and testing.
 
 ### 4.2 Testing and Evaluation
 - **Image Size**: 1024 x 768 pixels.
@@ -56,11 +58,15 @@ The face detection script (`source.py`) was run, and the results for minimum and
   - Example 2: 344 x 429 pixels
 
 #### Captured Images
-![Max and Min Size Detection - Example 1](images/max-detect-size.jpg)
+![Max and Min Size Detection - Example 1](images/max-detect-size.png)
 *Max Detected Size: 283x353 pixels*
 
 ![Max and Min Size Detection - Example 2](images/min-detect-size.jpg)
 *Min Detected Size: 344x429 pixels*
+
+### Average Detection Time
+- **Per Image**: 0.0213 seconds
+- **Per Image Per Face**: 0.01 seconds
 
 ---
 
@@ -90,10 +96,12 @@ Further analysis will be conducted to evaluate the detector’s performance unde
 
 ---
 
-## 8. References
-- OpenCV Documentation
-- Viola, P., & Jones, M. (2001). Rapid Object Detection using a Boosted Cascade of Simple Features. Proceedings of the 2001 IEEE Computer Society Conference on Computer Vision and Pattern Recognition.
+## 8. Project Demonstration
+- **Demo Video**: A demonstration video showcasing the face detection process and results is available here:
+  - [Video Link](https://drive.google.com/file/d/1uPG95scLV3zaYdYxJ_S2bBMrVD29NFVn/view?usp=drive_link)
 
 ---
 
-> **Note**: This report is a work in progress and will be updated as the project advances.
+## 9. References
+- OpenCV Documentation
+- Viola, P., & Jones, M. (2001). Rapid Object Detection using a Boosted Cascade of Simple Features. Proceedings of the 2001 IEEE Computer Society Conference on Computer Vision and Pattern Recognition.
